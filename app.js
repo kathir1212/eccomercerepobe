@@ -1,14 +1,12 @@
 import createError from 'http-errors';
 import express from 'express';
 import path from 'path';
-import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import { fileURLToPath } from 'url';
 import "./db.js"
 import connectCloudinary from './cloudinay.js';
-
 import indexRouter from './routes/index.js';
 import userRouter from './routes/userRoutes.js';
 import sellerRouter from './routes/sellerRoutes.js'
@@ -16,6 +14,7 @@ import productRoutes from './routes/productRoutes.js';
 import cartRoutes from './routes/cartRoutes.js';
 import addressRoutes from './routes/addressRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
+import cookieParser from "cookie-parser";
 dotenv.config();
 
 // Manually define __dirname for ES Modules
@@ -26,6 +25,8 @@ const app = express();
 await connectCloudinary()
 const allowedOrigin = "https://eccomerceapp.netlify.app";
 
+// const allowedOrigin = "http://localhost:5173"
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -34,12 +35,13 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({
   origin: allowedOrigin,
   credentials: true
 }));
+app.use(cookieParser());
 // Routes
 app.use('/', indexRouter);
 app.use('/api/user', userRouter);
