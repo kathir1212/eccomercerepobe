@@ -4,7 +4,7 @@ const authSeller = async (req , res , next) => {
  
 const {sellerToken} = req.cookies;
 
-console.log("req.cookies",req.cookies);
+console.log("req.cookies.token",req.cookies.token);
 
 
 if(!sellerToken) {
