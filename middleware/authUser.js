@@ -3,9 +3,9 @@ import jwt from "jsonwebtoken";
 export const authUser = async (req, res, next) => {
   console.log("Auth middleware triggered");
 
-  const { token } = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ODI1ZmMxOTg4ZWQwM2NkZjM2MGVmOCIsImlhdCI6MTc1Mzc5NTU1NSwiZXhwIjoxNzU0NDAwMzU1fQ.0Rh_xnPFChJJ4xBvF0eTOc8XhOWZOzCvbxDEIgrhf3M";
+  const { token } = req.cookies
 
-  console.log("Cookies received:", token);
+  console.log("Cookies received:", req);
 
   if (!token) {
     return res.status(401).json({ success: false, message: "Not Authorized - No token" });
