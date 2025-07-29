@@ -5,7 +5,7 @@ export const authUser = async (req, res, next) => {
 
   const { token } = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ODI1ZmMxOTg4ZWQwM2NkZjM2MGVmOCIsImlhdCI6MTc1Mzc5NTU1NSwiZXhwIjoxNzU0NDAwMzU1fQ.0Rh_xnPFChJJ4xBvF0eTOc8XhOWZOzCvbxDEIgrhf3M";
 
-  console.log("Cookies received:", req.cookies.token);
+  console.log("Cookies received:", token);
 
   if (!token) {
     return res.status(401).json({ success: false, message: "Not Authorized - No token" });
